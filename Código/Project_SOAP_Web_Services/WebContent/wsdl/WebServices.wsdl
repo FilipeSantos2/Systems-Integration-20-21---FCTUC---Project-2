@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service" xmlns:intf="http://service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getSpecificResearcher">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSpecificResearcherResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getSpecificResearcherReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getResearchers">
+    <complexType/>
+   </element>
+   <element name="getResearchersResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getResearchersReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSkillOwners">
+    <complexType>
+     <sequence>
+      <element name="skill" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSkillOwnersResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getSkillOwnersReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getResearchersRequest">
+
+      <wsdl:part element="impl:getResearchers" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSpecificResearcherResponse">
+
+      <wsdl:part element="impl:getSpecificResearcherResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getResearchersResponse">
+
+      <wsdl:part element="impl:getResearchersResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSkillOwnersRequest">
+
+      <wsdl:part element="impl:getSkillOwners" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSpecificResearcherRequest">
+
+      <wsdl:part element="impl:getSpecificResearcher" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSkillOwnersResponse">
+
+      <wsdl:part element="impl:getSkillOwnersResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="WebServices">
+
+      <wsdl:operation name="getSpecificResearcher">
+
+         <wsdl:input message="impl:getSpecificResearcherRequest" name="getSpecificResearcherRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getSpecificResearcherResponse" name="getSpecificResearcherResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getResearchers">
+
+         <wsdl:input message="impl:getResearchersRequest" name="getResearchersRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getResearchersResponse" name="getResearchersResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSkillOwners">
+
+         <wsdl:input message="impl:getSkillOwnersRequest" name="getSkillOwnersRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getSkillOwnersResponse" name="getSkillOwnersResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WebServicesSoapBinding" type="impl:WebServices">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getSpecificResearcher">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSpecificResearcherRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSpecificResearcherResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getResearchers">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getResearchersRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getResearchersResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSkillOwners">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSkillOwnersRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSkillOwnersResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WebServicesService">
+
+      <wsdl:port binding="impl:WebServicesSoapBinding" name="WebServices">
+
+         <wsdlsoap:address location="http://localhost:8080/Project_SOAP_Web_Services/services/WebServices"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,117 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\Carlos\Desktop\wildfly-21.0.0.Final\wildfly-21.0.0.Final\standalone\deployments\Project_EAR.ear\Project_SOAP_Web_Services.war\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="WebServices" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="getSpecificResearcher" qname="ns1:getSpecificResearcher" returnQName="ns1:getSpecificResearcherReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:name" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:operation name="getResearchers" qname="ns2:getResearchers" returnQName="ns2:getResearchersReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getSkillOwners" qname="ns3:getSkillOwners" returnQName="ns3:getSkillOwnersReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:skill" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getResearchers getSpecificResearcher getSkillOwners"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="WebServices"/>
+  <ns1:parameter name="className" value="service.WebServices"/>
+  <ns1:parameter name="wsdlServicePort" value="WebServices"/>
+  <ns1:parameter name="schemaQualified" value="http://service"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
+  <ns1:parameter name="wsdlServiceElement" value="WebServicesService"/>
+ </ns1:service>
+ <ns1:service name="ResearchersSoap" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getSpecificResearcher" qname="ns4:getSpecificResearcher" returnQName="ns4:getSpecificResearcherReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:name" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getResearchers" qname="ns5:getResearchers" returnQName="ns5:getResearchersReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="getSkillOwners" qname="ns6:getSkillOwners" returnQName="ns6:getSkillOwnersReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:skill" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getResearchers getSpecificResearcher getSkillOwners"/>
+  <ns1:parameter name="wsdlPortType" value="ResearchersSoap"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://service"/>
+  <ns1:parameter name="wsdlServicePort" value="ResearchersSoap"/>
+  <ns1:parameter name="className" value="service.ResearchersSoap"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
+  <ns1:parameter name="wsdlServiceElement" value="ResearchersSoapService"/>
+ </ns1:service>
+ <ns1:service name="PublicationsSoap" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getResearcherPublications" qname="ns7:getResearcherPublications" returnQName="ns7:getResearcherPublicationsReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:name" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getSpecificPublication" qname="ns8:getSpecificPublication" returnQName="ns8:getSpecificPublicationReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:title" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getPublications" qname="ns9:getPublications" returnQName="ns9:getPublicationsReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:parameter name="allowedMethods" value="getResearcherPublications getPublications getSpecificPublication"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="PublicationsSoap"/>
+  <ns1:parameter name="className" value="service.PublicationsSoap"/>
+  <ns1:parameter name="wsdlServicePort" value="PublicationsSoap"/>
+  <ns1:parameter name="schemaQualified" value="http://service"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
+  <ns1:parameter name="wsdlServiceElement" value="PublicationsSoapService"/>
+ </ns1:service>
+ <ns1:service name="trial" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getSpecificResearcher" qname="ns10:getSpecificResearcher" returnQName="ns10:getSpecificResearcherReturn" returnType="xsd:string" soapAction="" xmlns:ns10="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:name" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="getResearchersA" qname="ns11:getResearchersA" returnQName="ns11:getResearchersAReturn" returnType="xsd:string" soapAction="" xmlns:ns11="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:parameter name="allowedMethods" value="getSpecificResearcher getResearchersA"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="trial"/>
+  <ns1:parameter name="className" value="service.trial"/>
+  <ns1:parameter name="wsdlServicePort" value="trial"/>
+  <ns1:parameter name="schemaQualified" value="http://service"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
+  <ns1:parameter name="wsdlServiceElement" value="trialService"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

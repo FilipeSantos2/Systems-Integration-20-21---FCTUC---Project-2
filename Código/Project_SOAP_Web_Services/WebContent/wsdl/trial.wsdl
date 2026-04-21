@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service" xmlns:intf="http://service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getSpecificResearcher">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSpecificResearcherResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getSpecificResearcherReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getResearchersA">
+    <complexType/>
+   </element>
+   <element name="getResearchersAResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getResearchersAReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getResearchersAResponse">
+
+      <wsdl:part element="impl:getResearchersAResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getResearchersARequest">
+
+      <wsdl:part element="impl:getResearchersA" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSpecificResearcherResponse">
+
+      <wsdl:part element="impl:getSpecificResearcherResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSpecificResearcherRequest">
+
+      <wsdl:part element="impl:getSpecificResearcher" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="trial">
+
+      <wsdl:operation name="getSpecificResearcher">
+
+         <wsdl:input message="impl:getSpecificResearcherRequest" name="getSpecificResearcherRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getSpecificResearcherResponse" name="getSpecificResearcherResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getResearchersA">
+
+         <wsdl:input message="impl:getResearchersARequest" name="getResearchersARequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getResearchersAResponse" name="getResearchersAResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="trialSoapBinding" type="impl:trial">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getSpecificResearcher">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSpecificResearcherRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSpecificResearcherResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getResearchersA">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getResearchersARequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getResearchersAResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="trialService">
+
+      <wsdl:port binding="impl:trialSoapBinding" name="trial">
+
+         <wsdlsoap:address location="http://localhost:8080/Project_SOAP_Web_Services/services/trial"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

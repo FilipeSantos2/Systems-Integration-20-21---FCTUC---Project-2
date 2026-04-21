@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service" xmlns:intf="http://service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getResearcherPublications">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getResearcherPublicationsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getResearcherPublicationsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSpecificPublication">
+    <complexType>
+     <sequence>
+      <element name="title" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSpecificPublicationResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getSpecificPublicationReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPublications">
+    <complexType/>
+   </element>
+   <element name="getPublicationsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getPublicationsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getResearcherPublicationsResponse">
+
+      <wsdl:part element="impl:getResearcherPublicationsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSpecificPublicationRequest">
+
+      <wsdl:part element="impl:getSpecificPublication" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getResearcherPublicationsRequest">
+
+      <wsdl:part element="impl:getResearcherPublications" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSpecificPublicationResponse">
+
+      <wsdl:part element="impl:getSpecificPublicationResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPublicationsResponse">
+
+      <wsdl:part element="impl:getPublicationsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPublicationsRequest">
+
+      <wsdl:part element="impl:getPublications" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PublicationsSoap">
+
+      <wsdl:operation name="getResearcherPublications">
+
+         <wsdl:input message="impl:getResearcherPublicationsRequest" name="getResearcherPublicationsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getResearcherPublicationsResponse" name="getResearcherPublicationsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSpecificPublication">
+
+         <wsdl:input message="impl:getSpecificPublicationRequest" name="getSpecificPublicationRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getSpecificPublicationResponse" name="getSpecificPublicationResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPublications">
+
+         <wsdl:input message="impl:getPublicationsRequest" name="getPublicationsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPublicationsResponse" name="getPublicationsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PublicationsSoapSoapBinding" type="impl:PublicationsSoap">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getResearcherPublications">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getResearcherPublicationsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getResearcherPublicationsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSpecificPublication">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSpecificPublicationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSpecificPublicationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPublications">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPublicationsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPublicationsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PublicationsSoapService">
+
+      <wsdl:port binding="impl:PublicationsSoapSoapBinding" name="PublicationsSoap">
+
+         <wsdlsoap:address location="http://localhost:8080/Project_SOAP_Web_Services/services/PublicationsSoap"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

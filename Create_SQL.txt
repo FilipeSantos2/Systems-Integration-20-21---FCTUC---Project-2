@@ -1,0 +1,59 @@
+CREATE TABLE IF NOT EXISTS researchers (
+	name		 TEXT,
+	numberofpublications INTEGER,
+	reads		 INTEGER,
+	citations		 INTEGER,
+	institutions_name	 TEXT NOT NULL,
+	PRIMARY KEY(name)
+);
+
+CREATE TABLE IF NOT EXISTS skillsandexpertise (
+	skill TEXT,
+	PRIMARY KEY(skill)
+);
+
+CREATE TABLE IF NOT EXISTS publications (
+	id		 INTEGER,
+	title		 TEXT,
+	datepublication DATE,
+	doi		 TEXT,
+	source		 TEXT,
+	project	 TEXT,
+	abstract2	 TEXT,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS institutions (
+	name	 TEXT,
+	location	 TEXT,
+	department TEXT,
+	PRIMARY KEY(name)
+);
+
+CREATE TABLE IF NOT EXISTS researchers_publications (
+	researchers_name TEXT,
+	publications_id	 INTEGER,
+	PRIMARY KEY(researchers_name,publications_id)
+);
+
+CREATE TABLE IF NOT EXISTS researchers_skillsandexpertise (
+	researchers_name	 TEXT,
+	skillsandexpertise_skill TEXT,
+	PRIMARY KEY(researchers_name,skillsandexpertise_skill)
+);
+
+ALTER TABLE researchers DROP CONSTRAINT IF EXISTS researchers_fk1;
+ALTER TABLE researchers ADD CONSTRAINT researchers_fk1 FOREIGN KEY (institutions_name) REFERENCES institutions(name);
+
+ALTER TABLE researchers_publications DROP CONSTRAINT IF EXISTS researchers_publications_fk1;
+ALTER TABLE researchers_publications ADD CONSTRAINT researchers_publications_fk1 FOREIGN KEY (researchers_name) REFERENCES researchers(name);
+
+ALTER TABLE researchers_publications DROP CONSTRAINT IF EXISTS researchers_publications_fk2;
+ALTER TABLE researchers_publications ADD CONSTRAINT researchers_publications_fk2 FOREIGN KEY (publications_id) REFERENCES publications(id);
+
+ALTER TABLE researchers_skillsandexpertise DROP CONSTRAINT IF EXISTS researchers_skillsandexpertise_fk1;
+ALTER TABLE researchers_skillsandexpertise ADD CONSTRAINT researchers_skillsandexpertise_fk1 FOREIGN KEY (researchers_name) REFERENCES researchers(name);
+
+ALTER TABLE researchers_skillsandexpertise DROP CONSTRAINT IF EXISTS researchers_skillsandexpertise_fk2;
+ALTER TABLE researchers_skillsandexpertise ADD CONSTRAINT researchers_skillsandexpertise_fk2 FOREIGN KEY (skillsandexpertise_skill) REFERENCES skillsandexpertise(skill);
+
